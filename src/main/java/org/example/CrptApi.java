@@ -31,7 +31,6 @@ public class CrptApi {
     public void createDocument(Document document) {
 
         synchronized (this) {
-            if (requestCount.get() >= requestLimit) {
                 long currentTime = System.currentTimeMillis();
                 long timePassed = currentTime - date.getTime();
                 if (timePassed >= timeUnit.toMillis(1)) {
@@ -52,7 +51,6 @@ public class CrptApi {
                         date = new Date(currentTime);
                     }
                 }
-            }
         }
 
         try {
